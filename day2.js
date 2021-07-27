@@ -25,9 +25,9 @@ var angka2 = 4
 var angka3 = angka1 + angka2
 // console.log(angka3)
 
-// console.log(Math.random())
+// console.log(Math.random()) 0 - 1
 var multiTen = Math.random() * 10 // 0.0 - 9.9 
-var randomnum = Math.floor(multiTen) // 0 - 9
+var randomnum = Math.floor(multiTen) // 0 - 9 + 0 - 99 + 1-100
 // console.log(randomnum)
 var randomNum1 = Math.floor(Math.random() * 10) + 1 // 1-10
 // console.log(randomNum1)
