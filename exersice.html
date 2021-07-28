@@ -1,7 +1,8 @@
 <script>
     // genap adalah angka yang habis dibagi 2
-    var angka = parseInt(prompt('masukkan angka ?'))
-
+    var angka = parseInt(prompt('masukkan angka ?')) // membuat jika hruf yang diinput maka menjadi Nan
+    // dimana Nan kalo masuk didalam if menjadi false
+    alert(angka)
     if (angka || angka === 0) {
         if (angka % 2 == 0) {
             alert('angka ' + angka + ' genap ')
@@ -11,5 +12,6 @@
     } else {
         alert('salah input')
     }
+
 
 </script>
