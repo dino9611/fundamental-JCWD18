@@ -1,21 +1,63 @@
 <html>
 <script>
-// maksimal 24 jam 
-// ada 2 pilihan kendaraan : 1.mobil 2. motor 
-// harga parkir : - mobil 2000perjam, tapi 2 jam pertama 4000perjam
-// harga parkir : - motor 1000perjam, tapi 2 jam pertama 2000perjam
-// input masuk jam (0-11) 
-// am/pm 1.am 2.pm
-// input keluar jam (0-11) 
-// am/pm 1.am 2.pm
-// contoh :
-// 2 am - 1 pm = 11 jam 
-// 7 pm - 6 pm = 23 jam 
-// 7 pm - 7 pm  = 24 jam
-// 5 am - 10 am = 5 jam 
+    // maksimal 24 jam 
+    // ada 2 pilihan kendaraan : 1.mobil 2. motor 
+    // harga parkir : - mobil 2000perjam, tapi 2 jam pertama 4000perjam
+    // harga parkir : - motor 1000perjam, tapi 2 jam pertama 2000perjam
+    // input masuk jam (0-11) 
+    // am/pm 1.am 2.pm
+    // input keluar jam (0-11) 
+    // am/pm 1.am 2.pm
+    // contoh :
+    // 2 am - 1 pm = 11 jam  1 - 2  -1 + 12  = 11jam  2 jam * 4000 + 9 jam 2000
+    // 2 pm - 1 am = 11 jam  1 - 2  -1 + 12  = 11jam
+    // 7 pm - 6 pm = 23 jam   6- 7  + 24 =23
+    // 7 pm - 7 pm  = 24 jam +24
+    // 5 am - 10 am = 5 jam  10 - 5 = 5 jam 
+    // 2 am - 4 pm =   14 jam 
+    // kalau misalkan input tidak sesuai 
+    // hentikan program untuk pilih kendaran
+    // 11 jam = 9 jam 2000 + 2 jam * 4000
+    // jam keluar - jam masuk
+    // waktu parkir 2 jam = 8000, 3 jam = 10000 2jam + 1 jam  
+    var kendaraan = prompt('kendaraan :\n1.Mobil\n2.Motor')
+    if (kendaraan == 1 || kendaraan == 2) {
+        var biayaParkirperJam
+        var biaya2jamPertamaPerJam
+        if (kendaraan == 1) {
+            biayaParkirperJam = 2000
+            biaya2jamPertamaPerJam = 4000
+        } else {
+            biayaParkirperJam = 1000
+            biaya2jamPertamaPerJam = 2000
+        }
+        var jamMasuk = prompt('masuk jam ?(0-11)')
+        var kondisiMasuk = prompt('1.Am\n2.Pm')
+        var jamKeluar = prompt('keluar jam ?(0-11)')
+        var kondisiKeluar = prompt('1.Am\n2.Pm')
 
-// kalau misalkan input tidak sesuai 
-// hentikan program untuk pilih kendaran
+        var waktuParkir = jamKeluar - jamMasuk
+        if (kondisiMasuk != kondisiKeluar) {
+            waktuParkir += 12
+        } else if (waktuParkir <= 0 && kondisiMasuk == kondisiKeluar) {
+            waktuParkir += 24
+        }
+
+        var waktuBukan2jampertama = 0
+        var total = 0
+        if (waktuParkir > 2) {
+            waktuBukan2jampertama = waktuParkir - 2
+            total = (waktuBukan2jampertama * biayaParkirperJam) + (2 * biaya2jamPertamaPerJam) // 2 karena 2 jam pertama
+        } else {
+            total = waktuParkir * biaya2jamPertamaPerJam
+        }
+        alert('anda parkir ' + waktuParkir + ' jam, ' + 'Rp.' + total)
+    } else {
+        alert('salah input program dihentikan')
+    }
+
+
+
 </script>
 
 </html>
