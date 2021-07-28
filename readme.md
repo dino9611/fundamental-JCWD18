@@ -1,4 +1,2 @@
-# day 2
-# hari ini belajar
-
-## variable dan type data 
+# day 3 
+## conditional statement
