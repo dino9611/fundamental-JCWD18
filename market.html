@@ -10,19 +10,43 @@
     var anggur = 15000
     var jeruk = 20000
 
-    alert(`daftar buah:\n1. Apple : Rp.${apple}\n2. Anggur : Rp.${anggur}\n3. Jeruk : Rp.${jeruk}`)
+    var appleStock = 5
+    var anggurStock = 5
+    var jerukStock = 5
+
+    alert(`daftar buah:\n1. Apple : Rp.${apple}, stock = ${appleStock}\n2. Anggur : Rp.${anggur}, stock = ${anggurStock}\n3. Jeruk : Rp.${jeruk}, stock = ${jerukStock}`)
 
     var appleQty = prompt('berapa jumlah apple yang mau dibeli ?')
+    if (appleQty > appleStock) {
+        alert('Qty yang diinput melebihi Stock yang ada, maka Qty diubah menjadi ' + appleStock)
+        appleQty = appleStock
+    }
     var anggurQty = prompt('berapa jumlah anggur yang mau dibeli ?')
+    if (anggurQty > anggurStock) {
+        alert('Qty yang diinput melebihi Stock yang ada, maka Qty diubah menjadi ' + anggurStock)
+        anggurQty = anggurStock
+    }
     var jerukQty = prompt('berapa jumlah jeruk yang mau dibeli ?')
+    if (jerukQty > jerukStock) {
+        alert('Qty yang diinput melebihi Stock yang ada, maka Qty diubah menjadi ' + jerukStock)
+        jerukQty = jerukStock
+    }
 
     var total = (apple * appleQty) + (anggur * anggurQty) + (jeruk * jerukQty)
 
-    alert(`barang yang dibeli:
+    var inputBayar = prompt(`barang yang dibeli:
 1.Apple : Rp.${apple} X ${appleQty} = Rp.${apple * appleQty}
 2.anggur : Rp.${anggur} X ${anggurQty} = Rp.${anggur * anggurQty}
 3.jeruk : Rp.${jeruk} X ${jerukQty} = Rp.${jeruk * jerukQty}
 total = Rp. ${total}`)
+
+    if (parseInt(inputBayar) === total) {
+        alert('pas uangnya')
+    } else if (inputBayar > total) {
+        alert('kembali Rp.' + (inputBayar - total))
+    } else {
+        alert('pembayarannya kurang')
+    }
 
 
 </script>
