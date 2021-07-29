@@ -139,12 +139,12 @@ var rows = 5
 //     stars += '\n'
 // }
 
-for (let i = 0; i < rows; i++) {
-    for (let j = 0; j <= i; j++) {
-        stars += ' # '
-    }
-    stars += '\n'
-}
+// for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j <= i; j++) {
+//         stars += ' # '
+//     }
+//     stars += '\n'
+// }
 
 
 
@@ -187,6 +187,7 @@ for (let i = 0; i < rows; i++) {
 //     }
 //     stars += '\n'
 // }
+
 // ? cara lain
 // for (let i = 0; i < rows; i++) {
 //     for (let j = i; j < rows; j++) {
@@ -195,7 +196,9 @@ for (let i = 0; i < rows; i++) {
 //     stars += '\n'
 // }
 // console.log(stars)
+
 // ? segitiga rata-kanan alas dibawah
+
 // var stars = ''
 // var rows = 5
 // for (let i = 0; i < rows; i++) {
