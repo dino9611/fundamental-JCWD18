@@ -149,7 +149,80 @@ for (let i = 0; i < rows; i++) {
 
 
 // console.log('***\n***\n***\n')/
-console.log(stars)
+// console.log(stars)
 
-//  fizzbuzz
-var angka = 20
+//?  fizzbuzz
+// var angka = 20
+// langkah cari cara buat list angka dari 1-20
+// jika angka habis dibagi 3 dan 5 maka FizzBuzz
+// 
+// for (let i = 1; i <= angka; i++) {
+//     if (i % 5 === 0 && i % 3 === 0) {
+//         console.log('FizzBuzz')
+//     } else if (i % 5 === 0) {
+//         console.log('Buzz')
+//     } else if (i % 3 === 0) {
+//         console.log('Fizz')
+//     } else {
+//         console.log(i)
+//     }
+// }
+
+// ? segitiga siku alas diatas 
+// console.log('***\n**\n*\n')
+// var stars = ''
+// var rows = 3
+// stars += '*'  i=0
+// stars += '*'
+// stars += '*'
+// stars += '\n'
+// stars += '*' i=1
+// stars += '*'
+// stars += '\n'
+// stars += '*' i=2
+// stars += '\n'
+// for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < rows - i; j++) {
+//         stars += '*'
+//     }
+//     stars += '\n'
+// }
+// ? cara lain
+// for (let i = 0; i < rows; i++) {
+//     for (let j = i; j < rows; j++) {
+//         stars += '*'
+//     }
+//     stars += '\n'
+// }
+// console.log(stars)
+// ? segitiga rata-kanan alas dibawah
+// var stars = ''
+// var rows = 5
+// for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < rows - i - 1; j++) {
+//         stars += '   '
+//     }
+//     for (let k = 0; k < i + 1; k++) {
+//         stars += ' * '
+//     }
+//     stars += '\n'
+// }
+// console.log(stars)
+
+// ?segitiga rata kanan alas atas
+
+
+var stars = ''
+var rows = 5
+for (let i = 0; i < rows; i++) {
+    for (let j = 0; j <= i - 1; j++) {
+        stars += '   '
+    }
+    for (let k = i; k < rows; k++) {
+        stars += ' * '
+    }
+
+    stars += '\n'
+}
+
+console.log(stars)
