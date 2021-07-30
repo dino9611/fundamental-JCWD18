@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Market 1.1</title>
+    <title>Market 1.3</title>
 
 </head>
 
@@ -15,38 +15,46 @@
     var jerukStock = 5
 
     alert(`daftar buah:\n1. Apple : Rp.${apple}, stock = ${appleStock}\n2. Anggur : Rp.${anggur}, stock = ${anggurStock}\n3. Jeruk : Rp.${jeruk}, stock = ${jerukStock}`)
-
-    var appleQty = prompt('berapa jumlah apple yang mau dibeli ?')
-    if (appleQty > appleStock) {
-        alert('Qty yang diinput melebihi Stock yang ada, maka Qty diubah menjadi ' + appleStock)
-        appleQty = appleStock
+    do {
+        var appleQty = prompt('berapa jumlah apple yang mau dibeli ? stock = ' + appleStock)
+        if (isNaN(appleQty) || appleQty > appleStock || appleQty < 0) {
+            alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
+        }
+    } while (isNaN(appleQty) || appleQty > appleStock || appleQty < 0);
+    var anggurQty
+    while (true) {
+        anggurQty = prompt('berapa jumlah anggur yang mau dibeli ? stock = ' + anggurStock)
+        if (isNaN(anggurQty) || anggurQty > anggurStock || anggurQty < 0) {
+            alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
+        } else {
+            break
+        }
     }
-    var anggurQty = prompt('berapa jumlah anggur yang mau dibeli ?')
-    if (anggurQty > anggurStock) {
-        alert('Qty yang diinput melebihi Stock yang ada, maka Qty diubah menjadi ' + anggurStock)
-        anggurQty = anggurStock
-    }
-    var jerukQty = prompt('berapa jumlah jeruk yang mau dibeli ?')
-    if (jerukQty > jerukStock) {
-        alert('Qty yang diinput melebihi Stock yang ada, maka Qty diubah menjadi ' + jerukStock)
-        jerukQty = jerukStock
-    }
+    do {
+        var jerukQty = prompt('berapa jumlah jeruk yang mau dibeli ? stock = ' + jerukStock)
+        if (isNaN(jerukQty) || jerukQty > jerukStock || jerukQty < 0) {
+            alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
+        }
+    } while (isNaN(jerukQty) || jerukQty > jerukStock || jerukQty < 0);
 
     var total = (apple * appleQty) + (anggur * anggurQty) + (jeruk * jerukQty)
 
-    var inputBayar = prompt(`barang yang dibeli:
-1.Apple : Rp.${apple} X ${appleQty} = Rp.${apple * appleQty}
-2.anggur : Rp.${anggur} X ${anggurQty} = Rp.${anggur * anggurQty}
-3.jeruk : Rp.${jeruk} X ${jerukQty} = Rp.${jeruk * jerukQty}
-total = Rp. ${total}`)
 
-    if (parseInt(inputBayar) === total) {
-        alert('pas uangnya')
-    } else if (inputBayar > total) {
-        alert('kembali Rp.' + (inputBayar - total))
-    } else {
-        alert('pembayarannya kurang')
-    }
+    do {
+        var inputBayar = prompt(`barang yang dibeli:
+    1.Apple : Rp.${apple} X ${appleQty} = Rp.${apple * appleQty}
+    2.anggur : Rp.${anggur} X ${anggurQty} = Rp.${anggur * anggurQty}
+    3.jeruk : Rp.${jeruk} X ${jerukQty} = Rp.${jeruk * jerukQty}
+    total = Rp. ${total}`)
+
+        if (parseInt(inputBayar) === total) {
+            alert('pas uangnya')
+        } else if (inputBayar > total) {
+            alert('kembali Rp.' + (inputBayar - total))
+        } else {
+            alert('pembayarannya kurang')
+        }
+    } while (inputBayar < total || isNaN(inputBayar));
 
 
 </script>
