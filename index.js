@@ -62,14 +62,51 @@ var other = [...animals, ...fruits, ...benda, "tiger"]
 // console.log(things[0][1])
 // console.log(things)
 
-var categories = ['Sci-fi', 'Horror', 'Animation', "Action", 'Drama', 'Mystery', "Spongebob"]
-console.log(`Terdapat ${categories.length} kategori film yaitu :`)
+// var categories = ['Sci-fi', 'Horror', 'Animation', "Action", 'Drama', 'Mystery', "Spongebob"]
+// console.log(`Terdapat ${categories.length} kategori film yaitu :`)
 // console.log(categories[0])
 // console.log(categories[1])
 // console.log(categories[2])
 // console.log(categories[3])
 // console.log(categories[4])
 // console.log(categories[5])
-for (let i = 0; i < categories.length; i++) {
-    console.log(categories[i])
+// for (let i = 0; i < categories.length; i++) {
+//     console.log(categories[i])
+// }
+
+var names = ['Alex', 'Elena', 'Chaplin', 'Bernard', 'Michael', 'Dwight', 'Jim']
+names.sort()
+var reverseName = []
+for (let i = names.length - 1; i >= 0; i--) {
+    reverseName.push(names[i])
 }
+// reverseName.push(names[6])
+// reverseName.push(names[5])
+// reverseName.push(names[4])
+// reverseName.push(names[3])
+// reverseName.push(names[2])
+// reverseName.push(names[1])
+// reverseName.push(names[0])
+names = reverseName
+// console.log(names)
+
+// imitasi indexOf
+var names = ['Elena', 'Alex', 'Chaplin', 'Bernard', 'Michael', 'Dwight', 'Jim']
+var search = 'alex'
+
+var hasil = -1
+for (let i = 0; i < names.length; i++) {
+    if (search.toLowerCase() === names[i].toLowerCase()) {
+        hasil = i
+    }
+}
+
+console.log(hasil)//0
+var things = [
+    ['red pen', 'blue pen'],
+    ['clock', 'digital clock'],
+    ['shoes', 'running shoes']
+
+]
+things.push(['apel', 5000, 5])
+console.log(things)
