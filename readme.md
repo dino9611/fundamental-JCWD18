@@ -1,2 +1,2 @@
-# day 4 
-## Loop statement
+# day 5 
+## Array
