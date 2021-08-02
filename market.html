@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Market 1.3</title>
+    <title>Market 1.4</title>
 
 </head>
 
@@ -11,8 +11,10 @@
         ['Anggur', 15000, 6],
         ['Jeruk', 20000, 7],
     ]
+    var cart = [
 
-    var cart = []
+    ]
+    // cart[1][2] 
     do {
         var menuUtama = prompt(`Menu Utama :
     1. Menampilkan daftar buah
@@ -27,56 +29,109 @@
                 tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
             }
             alert(tampilanBuah)
-        } else if (menuUtama == 5) {
+        } else if (menuUtama == 2) {
+            var buahBaru = prompt('Nama buah')
+            var hargaBaru = parseInt(prompt('harga buah ? '))
+            var stockBaru = parseInt(prompt('jumlah stock ?'))
+            // ?optional 
+            var yakin = confirm(`${buahBaru}, harga Rp.${hargaBaru},00 , stock ${stockBaru}\nYakin ?`)
+            if (yakin) {
+                fruits.push([buahBaru, hargaBaru, stockBaru])
+                var tampilanBuah = 'Daftar buah:\n'
+                for (let i = 0; i < fruits.length; i++) {
+                    tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+                }
+                alert(tampilanBuah)
+            } else {
+                alert('kembali ke menu utama')
+            }
+        } else if (menuUtama == 3) {
+            var tampilanBuahDel = 'pilih yang mau dihapus:\n'
+            for (let i = 0; i < fruits.length; i++) {
+                tampilanBuahDel += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+            }
+            var nomorDelete = prompt(tampilanBuahDel)
+            var yakin = confirm(`apakah Yakin menghapus buah ${fruits[nomorDelete - 1][0]} ?`)
+            if (yakin) {
+                fruits.splice(nomorDelete - 1, 1)
+                var tampilanBuah = 'Daftar buah:\n'
+                for (let i = 0; i < fruits.length; i++) {
+                    tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+                }
+                alert(tampilanBuah)
+            } else {
+                alert('kembali ke menu utama')
+            }
+        } else if (menuUtama == 4) {
+            while (true) {
+                var tampilanBuahBuy = 'pilih yang mau dibeli:\n'
+                for (let i = 0; i < fruits.length; i++) {
+                    tampilanBuahBuy += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+                }
+                var nomorBuy = prompt(tampilanBuahBuy)
+                do {
+                    var qtyBuy = parseInt(prompt(`beli buah ${fruits[nomorBuy - 1][0]} berapa ? stock =  ${fruits[nomorBuy - 1][2]} `))
+                    if (isNaN(qtyBuy) || qtyBuy > fruits[nomorBuy - 1][2] || qtyBuy < 0) {
+                        alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
+                    }
+                } while (isNaN(qtyBuy) || qtyBuy > fruits[nomorBuy - 1][2] || qtyBuy < 0);
+
+                fruits[nomorBuy - 1][2] -= qtyBuy
+                var indexcart = -1
+                for (let i = 0; i < cart.length; i++) {
+                    if (cart[i][0] == fruits[nomorBuy - 1][0]) {
+                        indexcart = i
+                        break
+                    }
+                }
+                if (indexcart >= 0) {
+                    cart[indexcart][2] += qtyBuy
+                } else {
+                    cart.push([fruits[nomorBuy - 1][0], fruits[nomorBuy - 1][1], qtyBuy])
+                }
+
+                var tampilanCart = 'Daftar cart:\n'
+                for (let i = 0; i < cart.length; i++) {
+                    tampilanCart += `${i + 1}. ${cart[i][0]} : Rp.${cart[i][1]},00 , qty = ${cart[i][2]}\n`
+                }
+                alert(tampilanCart)
+                var beliLagi = confirm('beli lagi nggak ?')
+                if (!beliLagi) {
+                    break
+                }
+            }
+
+            var grandTotal = 0
+            for (let i = 0; i < cart.length; i++) {
+                grandTotal += cart[i][1] * cart[i][2]
+            }
+            var promptPay = `barang yang dibeli:\n`
+            for (let i = 0; i < cart.length; i++) {
+                promptPay += `${i + 1}. ${cart[i][0]} : Rp.${cart[i][1]},00 X qty = ${cart[i][2]} = ${cart[i][1] * cart[i][2]}\n`
+            }
+            promptPay += `GrandTotal = Rp. ${grandTotal}`
+            do {
+                var inputBayar = prompt(promptPay)
+                if (parseInt(inputBayar) === grandTotal) {
+                    alert('pas uangnya')
+                } else if (inputBayar > grandTotal) {
+                    alert('kembali Rp.' + (inputBayar - grandTotal))
+                } else {
+                    alert('pembayarannya kurang')
+                }
+            } while (inputBayar < grandTotal || isNaN(inputBayar));
+            alert('thank you sudah bayar')
+
+        }
+        else if (menuUtama == 5) {
             konfirmasi = confirm('yakin keluar menu Utama ?') // return true atau false
             // alert(konfirmasi)
+        } else {
+            alert('salah input ')
         }
 
     } while (!konfirmasi);
 
-
-
-    // alert(`daftar buah:\n1. Apple : Rp.${apple}, stock = ${appleStock}\n2. Anggur : Rp.${anggur}, stock = ${anggurStock}\n3. Jeruk : Rp.${jeruk}, stock = ${jerukStock}`)
-    // do {
-    //     var appleQty = prompt('berapa jumlah apple yang mau dibeli ? stock = ' + appleStock)
-    //     if (isNaN(appleQty) || appleQty > appleStock || appleQty < 0) {
-    //         alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
-    //     }
-    // } while (isNaN(appleQty) || appleQty > appleStock || appleQty < 0);
-    // var anggurQty
-    // while (true) {
-    //     anggurQty = prompt('berapa jumlah anggur yang mau dibeli ? stock = ' + anggurStock)
-    //     if (isNaN(anggurQty) || anggurQty > anggurStock || anggurQty < 0) {
-    //         alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
-    //     } else {
-    //         break
-    //     }
-    // }
-    // do {
-    //     var jerukQty = prompt('berapa jumlah jeruk yang mau dibeli ? stock = ' + jerukStock)
-    //     if (isNaN(jerukQty) || jerukQty > jerukStock || jerukQty < 0) {
-    //         alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
-    //     }
-    // } while (isNaN(jerukQty) || jerukQty > jerukStock || jerukQty < 0);
-
-    // var total = (apple * appleQty) + (anggur * anggurQty) + (jeruk * jerukQty)
-
-
-    // do {
-    //     var inputBayar = prompt(`barang yang dibeli:
-    // 1.Apple : Rp.${apple} X ${appleQty} = Rp.${apple * appleQty}
-    // 2.anggur : Rp.${anggur} X ${anggurQty} = Rp.${anggur * anggurQty}
-    // 3.jeruk : Rp.${jeruk} X ${jerukQty} = Rp.${jeruk * jerukQty}
-    // total = Rp. ${total}`)
-
-    //     if (parseInt(inputBayar) === total) {
-    //         alert('pas uangnya')
-    //     } else if (inputBayar > total) {
-    //         alert('kembali Rp.' + (inputBayar - total))
-    //     } else {
-    //         alert('pembayarannya kurang')
-    //     }
-    // } while (inputBayar < total || isNaN(inputBayar));
 
 
 </script>
