@@ -6,13 +6,33 @@
 </head>
 
 <script>
+    //?  declaration
+    // function printBuah() {
+    //     var tampilanBuah = 'Daftar buah:\n'
+    //     for (let i = 0; i < fruits.length; i++) {
+    //         tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+    //     }
+    //     alert(tampilanBuah)
+    // }
+    //? expression
+    const printBuah = () => {
+        var tampilanBuah = 'Daftar buah:\n'
+        for (let i = 0; i < fruits.length; i++) {
+            tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+        }
+        alert(tampilanBuah)
+    }
     var fruits = [
         ['Apel', 10000, 5],
         ['Anggur', 15000, 6],
         ['Jeruk', 20000, 7],
     ]
 
-    var cart = []
+    var cart = [
+        ['Anggur', 15000, 2],
+        ['Jeruk', 20000, 1],
+
+    ]
     do {
         var menuUtama = prompt(`Menu Utama :
     1. Menampilkan daftar buah
@@ -22,11 +42,12 @@
     5. exit`)
         var konfirmasi
         if (menuUtama == 1) {
-            var tampilanBuah = 'Daftar buah:\n'
-            for (let i = 0; i < fruits.length; i++) {
-                tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
-            }
-            alert(tampilanBuah)
+            // var tampilanBuah = 'Daftar buah:\n'
+            // for (let i = 0; i < fruits.length; i++) {
+            //     tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+            // }
+            // alert(tampilanBuah)
+            printBuah()
         } else if (menuUtama == 5) {
             konfirmasi = confirm('yakin keluar menu Utama ?') // return true atau false
             // alert(konfirmasi)
