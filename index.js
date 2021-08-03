@@ -274,11 +274,7 @@ const fibo = (urutan) => {
     }
 }
 
-
-
-
 console.log(fibo(6))
-
 
 var fruits = [
     ['Apel', 10000, 5],
