@@ -100,3 +100,8 @@ const reverseWord = (kalimat) => {
 }
 
 console.log(reverseWord('Hai aku Joan Mir'))
+
+
+var nilai = 50
+var grade = nilai >= 80 ? 'A' : nilai < 80 && nilai >= 70 ? 'B' : 'C'
+console.log(grade)
