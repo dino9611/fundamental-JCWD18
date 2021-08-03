@@ -1,2 +1,2 @@
-# day 5 
-## Array
+# day 7 
+## funtion array method

@@ -146,7 +146,7 @@ var arrbaru = statuses.map((val) => {
         return 'C'
     }
 })
-console.log(arrbaru)
+// console.log(arrbaru)
 
 const mapDuplicate = (arr, cb) => {
     //
@@ -158,10 +158,27 @@ const mapDuplicate = (arr, cb) => {
     return newArr
 }
 
+const forEachDuplicate = (arr, cb) => {
+
+    for (let i = 0; i < arr.length; i++) {
+        cb(arr[i])
+    }
+
+}
+
+function hurufKecil(arr) {
+    return arr.map((val) => {
+        return val.toLowerCase()
+    })
+}
+
+statuses = [
+    ['reject', 'onbook', 'booking'],
+    ['booking', 'onbook', 'booking']
+]
 
 
-
-var hasil = mapDuplicate(statuses, (val) => {
+var funx = val => {
     if (val == 'booking') {
         return 'D'
     } else if (val === 'reject') {
@@ -169,5 +186,111 @@ var hasil = mapDuplicate(statuses, (val) => {
     } else {
         return 'Z'
     }
+}
+//mapping untuk array 2 d
+// var hasil = statuses.map(val => val.map(funx))
+// var hasil1 = mapDuplicate(['onbook', 'onbook', 'booking'], funx)
+
+// console.log(hurufKecil(hasil))
+
+// console.log(hasil)
+// console.log(hasil1)
+
+var numbers = [11, 22, 53, 24, 15]
+
+const calFilterGanjil = (val) => {
+    return val % 2 == 1
+}
+
+const filterDuplicate = (arr, cb) => {
+    //
+    var newArr = []
+    for (let i = 0; i < arr.length; i++) {
+        var newVal = cb(arr[i])
+        if (newVal) {
+            newArr.push(arr[i])
+        }
+
+    }
+    return newArr
+}
+
+
+
+
+// var numfilter = numbers.filter(calFilterGanjil)
+var numfilter = filterDuplicate(numbers, calFilterGanjil)
+// console.log(numfilter)
+var numbers = [100, 2, 53, 24, 15]
+
+var numbers1 = numbers.sort((a, b) => b - a) // desc 
+
+// console.log(numbers1)
+
+// function tes() {
+//     const tes1 = 'hahha'
+//     return tes1
+// }
+// const tes1 = 'dasda'
+
+
+if (true) {
+    var tes1 = 122
+
+}
+// var tes1 = 33
+
+// console.log(tes1)
+// 
+var names = ['michael', 'pam', 'dwight', 'jim', 'stanley']
+
+// pam, michael, jim, stanley, dwight
+// ? desc sort
+names = names.sort((a, b) => {
+    if (a < b) {
+        return 1
+    } else if (a > b) {
+        return -1
+    } else {
+        return 0
+    }
 })
-console.log(hasil)
+console.log(names)
+
+var names1 = ['michael', 'pam']
+
+var temp = names1[0]
+names1[0] = names1[1]
+names1[1] = temp
+
+console.log(names1)
+
+const fibo = (urutan) => {
+
+    if (urutan < 3) {
+        return 1
+    } else {
+        return fibo(urutan - 1) + fibo(urutan - 2)
+    }
+}
+
+
+
+
+console.log(fibo(6))
+
+
+var fruits = [
+    ['Apel', 10000, 5],
+    ['Anggur', 15000, 20],
+    ['Jeruk', 20000, 15],
+]
+var namaBuah = 'e'
+var hargaMaksimum = 25000
+var hargaMinimun = 15000
+// console.log('Apel'.includes('d'))
+
+// barang yang stocknya diatas sepuluh dan harganya dibawah 20 rb
+var newFruits = fruits.filter((val) => val[2] > 10 && val[1] < 20000)
+console.log(newFruits)
+// [['Anggur', 15000, 20]]
