@@ -99,9 +99,44 @@ const reverseWord = (kalimat) => {
     return kalimatSplit.join(' ')
 }
 
-console.log(reverseWord('Hai aku Joan Mir'))
+// console.log(reverseWord('Hai aku Joan Mir'))
 
 
 var nilai = 50
 var grade = nilai >= 80 ? 'A' : nilai < 80 && nilai >= 70 ? 'B' : 'C'
-console.log(grade)
+// console.log(grade)
+// Sunday Six +2
+
+// s index = 18 + 2 = 20
+//  z =25 + 2 % 26   = 1 
+//
+
+const caesarChiper = (kata, numb) => {
+    let alpha = 'abcdefghijklmnopqrstuvwxyz'.split('') // 26  string -> array
+    let alphaBig = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('') //26 // string -> array
+    kata = kata.split('')
+    var output = ''
+    for (let i = 0; i < kata.length; i++) {
+        if (kata[i] === ' ') {
+            output += ' '
+            continue
+        }
+        let alphaIndex = -1
+        alphaIndex = alpha.indexOf(kata[i]) // mencari index kata[i] di variable alpha
+        if (alphaIndex >= 0) {
+            alphaIndex = (alphaIndex + numb) % 26
+            output += alpha[alphaIndex]
+            continue
+        }
+        alphaIndex = alphaBig.indexOf(kata[i]) // mencari index kata[i] di variable alpha
+        if (alphaIndex >= 0) {
+            alphaIndex = (alphaIndex + numb) % 26
+            output += alphaBig[alphaIndex]
+        }
+    }
+    return output
+
+}
+
+
+console.log(caesarChiper('Sunday Six', 54))
