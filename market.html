@@ -14,12 +14,20 @@
     //     }
     //     alert(tampilanBuah)
     // }
-    //? expression
+    //? expression //whitout forEach
+    // const printBuah = () => {
+    //     var tampilanBuah = 'Daftar buah:\n'
+    //     for (let i = 0; i < fruits.length; i++) {
+    //         tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
+    //     }
+    //     alert(tampilanBuah)
+    // }
+    // ? with forEach
     const printBuah = () => {
         var tampilanBuah = 'Daftar buah:\n'
-        for (let i = 0; i < fruits.length; i++) {
-            tampilanBuah += `${i + 1}. ${fruits[i][0]} : Rp.${fruits[i][1]},00 , stock = ${fruits[i][2]}\n`
-        }
+        fruits.forEach((val) => {
+            tampilanBuah += `${i + 1}. ${val[0]} : Rp.${val[1]},00 , stock = ${val[2]}\n`
+        })
         alert(tampilanBuah)
     }
     var fruits = [
