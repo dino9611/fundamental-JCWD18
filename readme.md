@@ -1,2 +1,2 @@
-# day 7 
-## funtion array method
+# day 8 
+## all about object
