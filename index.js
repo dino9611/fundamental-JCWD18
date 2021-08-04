@@ -125,10 +125,10 @@ class LivingThings {
         this.alive = true
 
     }
-    eat = () => {
+    eat() {
         console.log('eating')
     }
-    breed = () => {
+    breed() {
         console.log('breed')
     }
 }
@@ -145,26 +145,43 @@ class Human extends LivingThings {
 
 }
 class Animal extends LivingThings {
+    #fly // private
     constructor(name, age, fly) {
         super(name, age)
-        this.fly = fly
+        this.#fly = fly
     }
+
+    // get fly() {
+    //     return this.#fly
+    // }
+
+    // set changefly(input) {
+    //     this.#fly = input
+    // }
 
     hunt = () => {
         console.log('hunt')
     }
 
+    breed = () => {
+        super.breed()
+        console.log("by bertelur/melahirkan")
+    }
+
 }
 class Plant extends LivingThings {
+    #color // private
     constructor(name, age, color) {
         super(name, age)
-        this.color = color
+        this.#color = color
     }
 
     // static flower() {
 
     // }
-
+    get getColor() {
+        return this.#color
+    }
     photo = () => {
 
         console.log('photosynthesis')
@@ -174,11 +191,14 @@ class Plant extends LivingThings {
 var human = new Human('dino', 24, true)
 var animal1 = new Animal('tiger', 5, false)
 var animal2 = new Animal('cheetah', 5, false)
-// var plant1 = new Plant('rose', 5, 'red')
-
+var plant1 = new Plant('rose', 5, 'red')
 // Plant.flower()
 // animal1.hunt()
-console.log(human.age)
-console.log(animal1.name)
+// console.log(animal1.fly)
+// animal1.changefly = true
+// console.log(animal1.fly)
+// animal1.breed()
 
+// console.log(plant1.getColor)
 
+// console.log(new Date())
