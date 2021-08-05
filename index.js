@@ -101,4 +101,59 @@ var filterFruits = newFruits.filter((val) => {
 })
 
 
-console.log(filterFruits)
+// console.log(filterFruits)
+
+
+var numb = [1, 2, 3, 2, 5, 2, 7, 2]
+
+const mode = (arr) => {
+
+    var maxCount = 0
+    var angkaMode
+    for (let i = 0; i < arr.length; i++) {
+        let count = 0
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[i] === arr[j]) {
+                count++
+            }
+        }
+
+        if (count > maxCount) {
+            angkaMode = arr[i]
+            maxCount = count
+        }
+    }
+    return angkaMode
+}
+
+// console.log(mode(numb))
+
+let months = [
+    'januari',
+    'februari',
+    'maret',
+    'april',
+    'mei',
+    'juni',
+    'juli',
+    'agustus',
+    'september',
+    'oktober',
+    'november',
+    'december'
+]
+let days = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu']
+
+var date = new Date()
+var tanggal = date.getDate()
+var hari = days[date.getDay()]
+var bulan = months[date.getMonth()]
+var tahun = date.getFullYear()
+var jam = date.getHours()
+if (jam < 10) {
+    jam = '0' + jam
+}
+var menit = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+var detik = date.getSeconds()
+
+console.log(`hari ini ${hari},${tanggal} ${bulan} ${tahun}, pukul ${jam}:${menit}:${detik}`)
