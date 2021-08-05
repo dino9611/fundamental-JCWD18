@@ -4,12 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index HTMLJS</title>
+    <title>index HTML JS</title>
 </head>
 
 <body>
-    <h1>hay</h1>
-    <a href="./exercise.html">Goto exercise again</a>
+
 </body>
+<script>
+    class User {
+        constructor(_username, _password, _role) {
+            this.username = _username
+            this.password = _password
+            this.role = _role
+        }
+    }
+
+    class Product {
+        constructor(_name, _price, _stock) {
+            this.name = _name
+            this.price = _price
+            this.stock = _stock
+        }
+    }
+
+    let products = [
+        new Product('Tv', 100000, 2)
+    ]
+
+    let users = [
+        new User('admin', "pass", "admin"),
+        new User("dino", "pass", "user")
+    ]
+
+
+    do {
+        let auth = prompt('1.Login\n2.Register\n3.exit')
+        if (auth == 1) {
+            let username = prompt('username')
+            let password = prompt('password')
+            let userAda = users.filter((val) => {
+                return val.username == username && val.password == password
+            })
+            if (userAda.length) {
+                do {
+                    let menu = prompt('1.menu admin \n2. menu user\n3.LogOut \n')
+                    if (menu == 1) {
+                        if (userAda[0].role == 'admin') {
+                            alert('admin')
+                        } else {
+                            alert('anda bukan admin')
+                        }
+                    } else {
+                        break
+                    }
+
+                } while (true);
+            } else {
+                alert('pass/username salah')
+                let tanya = confirm('mau login/register lagi ?')
+                if (!tanya) {
+                    break
+                }
+            }
+        } else if (auth == 2) {
+            let username = prompt('username')
+            let password = prompt('password')
+            let userAda = users.filter((val) => {
+                return val.username == username
+            })
+            if (userAda.length) {
+                alert('username sudah ada')
+            } else {
+                users.push(new User(username, password, 'user'))
+                alert('berhasil register silahkan login lagi')
+            }
+        } else if (auth == 3) {
+            break
+        }
+    } while (true);
+
+
+
+</script>
 
 </html>

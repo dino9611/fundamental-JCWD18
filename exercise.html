@@ -44,15 +44,25 @@
     </ul> -->
     <h1>latihan cara mengambil value dari input</h1>
 
-    <input type="text" placeholder="username" name='username'>
+    <input type="text" placeholder="username" id='username'>
     <input type="text" placeholder="username1" name='username'>
+    <br><br>
+    <input type="radio" name='gender' value='male'> Male
+    <input type="radio" name='gender' value="female"> Female
+    <br><br>
+    <input type="checkbox" name="category" value='comedy'> comedy
     <br>
-    <input type="radio">
+    <input type="checkbox" name="category" value='romance'> Romance
     <br>
-    <input type="checkbox">
+    <input type="checkbox" name="category" value="action"> action
+    <br>
+    <input type="checkbox" name="category" value="scifi"> Sci-fi
+    <br><br>
+    <input type="checkbox" id='remember'> Remember me
+    <br>
     <!-- menu dropDown -->
     <br>
-    <select>
+    <select id='pilihan'>
         <option value="A">first</option>
         <option value="B">Second</option>
         <option value="C">third</option>
@@ -101,8 +111,48 @@
         // dia array karena jamak
         // let username = document.getElementsByName('username')[0].value
 
-        console.log(username)
+        // console.log(username)
+
+        // radio
+        // get elements by name
+        // var gender
+        // var radios = document.getElementsByName('gender')
+        // if (radios[0].checked) {
+        //     gender = radios[0].value
+        // } else if (radios[1].checked) {
+        //     gender = radios[1].value
+        // }
+        // radios.forEach((element) => {
+        //     if (element.checked) {
+        //         gender = element.value
+        //     }
+        // })
+        // if (gender) {
+        //     console.log(gender)
+        // } else {
+        //     console.log('tidak di cek')
+        // }
+
+        // ? checkbox yang banyak dalam satu kelompok
+        // var check = [] // hanya yang dicheck type ['']
+        // let checkbox = document.getElementsByName('category')
+        // checkbox.forEach((element) => {
+        //     // if (element.checked) {
+        //     //     check.push(element.value)
+        //     // }
+        //     check.push({ value: element.value, checked: element.checked })
+        // })
+        // console.log(check)
+
+        // let remember = document.getElementById('remember').checked
+        // console.log(remember)
+
+        // select
+        let pilihan = document.getElementById('pilihan').value
+        console.log(pilihan)
+
     }
+
 
 </script>
 
