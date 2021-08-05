@@ -202,3 +202,32 @@ var plant1 = new Plant('rose', 5, 'red')
 // console.log(plant1.getColor)
 
 // console.log(new Date())
+
+class Hero {
+    constructor(_name, str, agi, int) {
+        this.name = _name
+        this.strength = str
+        this.agility = agi
+        this.intelligence = int
+    }
+
+}
+
+class HeroStrength extends Hero {
+    constructor(_name, str, agi, int, strAdd) {
+        super(_name, str, agi, int)
+
+        this.strAdd = strAdd
+    }
+
+}
+class HeroIntelligence extends Hero {
+    constructor(name, str, agi, int, intAdd) {
+        super(name, str, agi, int)
+        this.intAdd = intAdd
+    }
+}
+
+var hero = new HeroStrength('axe', 38, 20, 10, 10)
+// console.log(hero.roar())
+
