@@ -79,17 +79,19 @@ const printData = () => {
 }
 printData()
 // todo : Input data #priority
-    // input data algortihm
-    // ambil data di tiap tag input 
-    // push data ke variable products 
-    // lalu print data ulang
+// input data algortihm
+// ambil data di tiap tag input 
+// push data ke variable products 
+// lalu print data ulang
 
 // todo :Filter dikerjakan setelah input
-    // filter data algorithm
-    // ambil input filter 
-    // terus lakukan filter 
-    // bisa menggunakan filter array atau looping biasa 
-    // data master jangan sampai di ganti 
-    // setelah itu printdata ulang
+// filter data algorithm
+// ambil input filter 
+// terus lakukan filter 
+// bisa menggunakan filter array atau looping biasa 
+// data master jangan sampai di ganti 
+// setelah itu printdata ulang
 
-
+var ravi = 'reece'
+var hasil = putri()[ravi][1][0]['rodeo']().russel('timo').yhido // angga
+var hasil = putri()[ravi][1][0]['rodeo']().russel().yhido // govar
