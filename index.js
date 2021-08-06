@@ -157,3 +157,22 @@ var menit = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
 var detik = date.getSeconds()
 
 console.log(`hari ini ${hari},${tanggal} ${bulan} ${tahun}, pukul ${jam}:${menit}:${detik}`)
+
+
+class Product {
+    constructor(_name, _price, _stock, _category) {
+        this.name = _name
+        this.price = _price
+        this.stock = _stock
+        this.category = _category
+    }
+}
+
+class FastFood extends Product {
+    constructor(_name, _price, _stock, _category, _expired) {
+        super(_name, _price, _stock, _category)
+        this.expired = _expired
+    }
+}
+
+console.log(new FastFood())

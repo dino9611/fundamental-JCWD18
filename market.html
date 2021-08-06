@@ -6,97 +6,182 @@
 </head>
 
 <script>
-    var fruits = [
-        {
-            name: 'Apel',
-            price: 10000,
-            stock: 5
-        },
-        {
-            price: 15000,
-            stock: 6,
-            name: 'Anggur'
-        },
-        {
-            name: 'Jeruk',
-            price: 20000,
-            stock: 7
-        },
+    class Product {
+        constructor(_name, _price, _stock, _category) {
+            this.name = _name
+            this.price = _price
+            this.stock = _stock
+            this.category = _category
+        }
+    }
+
+    class FastFood extends Product {
+        constructor(_name, _price, _stock, _category, _expired) {
+            super(_name, _price, _stock, _category)
+            this.expired = _expired
+        }
+    }
+
+
+    class Cloth extends Product {
+        constructor(_name, _price, _stock, _category, _size) {
+            super(_name, _price, _stock, _category)
+            this.size = _size
+        }
+    }
+
+    class Electronic extends Product {
+        constructor(_name, _price, _stock, _category, _warranty) {
+            super(_name, _price, _stock, _category)
+            this.warranty = _warranty
+        }
+    }
+
+    class Fruits extends Product {
+        constructor(_name, _price, _stock, _category, _sugarLevel) {
+            super(_name, _price, _stock, _category)
+            this.sugarLevel = _sugarLevel
+        }
+    }
+
+    class Cart {
+        constructor(_name, _price, _qty) {
+            this.name = _name
+            this.price = _price
+            this.qty = _qty
+        }
+    }
+
+    let categories = ['Fast food', 'Electronic', 'Baju', 'Fruits']
+    let sugarLevel = ['Low', "Medium", 'High']
+    let size = ['S', "M", 'L', 'XL']
+
+    let products = [
+        new Cloth('Batik', 20000, 10, 2, 'L'),
+        new FastFood('KFC', 50000, 20, 0, 2022),
+        new Electronic('TV', 5000000, 5, 1, true),
+        new Fruits('Apel', 10000, 30, 3, "Normal")
     ]
-    // fruits[1].name
+    // products[1].name
     var cart = [
 
     ]
+    const renderList = (obj) => {
+        var output = ''
+        for (property in obj) { // untuk looping object
+            if (property == 'category') {
+                output += `${property} : ${categories[obj[property]]} `
+            } else {
+                output += `${property} : ${obj[property]}`
+            }
+            if (['name', 'price', 'category', 'stock'].includes(property)) {
+                output += ', '
+            }
+        }
+        return output
+    }
     // cart[1][2] 
-    function tampilkanBuah() {
-        var tampilanBuah = 'Daftar buah:\n'
-        fruits.forEach((val, i) => {
-            tampilanBuah += `${i + 1}. ${val.name} : Rp.${val["price"]},00 , stock = ${val.stock}\n`
+    function tampilkanProd() {
+        var tampilanProd = 'Daftar Products:\n'
+        products.forEach((val, i) => {
+            // tampilanProd += `${i + 1}. ${val.name} : Rp.${val["price"]},00 , stock = ${val.stock}, category :${categories[val.category]}\n`
+            tampilanProd += `${i + 1}. ${renderList(val)}\n`
         })
-        alert(tampilanBuah)
+        alert(tampilanProd)
     }
     do {
         var menuUtama = prompt(`Menu Utama :
-    1. Menampilkan daftar buah
-    2. Menambah buah
-    3. Menghapus buah
-    4. Membeli buah
+    1. Menampilkan daftar Produk
+    2. Menambah Produk
+    3. Menghapus Produk
+    4. Membeli Produk
     5. exit`)
         var konfirmasi
         if (menuUtama == 1) {
-            tampilkanBuah()
+            tampilkanProd()
             // var tampilanBuah = 'Daftar buah:\n'
-            // for (let i = 0; i < fruits.length; i++) {
-            //     tampilanBuah += `${i + 1}. ${fruits[i].name} : Rp.${fruits[i]["price"]},00 , stock = ${fruits[i].stock}\n`
+            // for (let i = 0; i < products.length; i++) {
+            //     tampilanBuah += `${i + 1}. ${products[i].name} : Rp.${products[i]["price"]},00 , stock = ${products[i].stock}\n`
             // }
             // alert(tampilanBuah)
         } else if (menuUtama == 2) {
-            var buahBaru = prompt('Nama buah')
-            var hargaBaru = parseInt(prompt('harga buah ? '))
+
+            let printCategories = ''
+            categories.forEach((val, index) => {
+                printCategories += index + 1 + '.' + val + '\n'
+            })
+            var productBaru = prompt('Nama Product')
+            var hargaBaru = parseInt(prompt('harga product ? '))
             var stockBaru = parseInt(prompt('jumlah stock ?'))
-            // ?optional 
-            var yakin = confirm(`${buahBaru}, harga Rp.${hargaBaru},00 , stock ${stockBaru}\nYakin ?`)
+            var pilihanCategory = prompt('pilih kategory untuk product yang ditambahkan:\n' + printCategories)
+            var inputTambahan
+            let newProduct
+            if (pilihanCategory == 1) {
+                inputTambahan = prompt('kapan expired ? ex : 2020')
+                newProduct = new FastFood(
+                    productBaru,
+                    hargaBaru,
+                    stockBaru,
+                    pilihanCategory - 1,
+                    inputTambahan
+                )
+            } else if (pilihanCategory == 2) {
+                inputTambahan = prompt('ada garansi ?\n1.iya\n2.tidak')
+                if (inputTambahan == 1) inputTambahan = true
+                else inputTambahan = false
+                // inputTambahan = inputTambahan == 1 ? true : false
+                newProduct = new Electronic(
+                    productBaru,
+                    hargaBaru,
+                    stockBaru,
+                    pilihanCategory - 1,
+                    inputTambahan
+                )
+            } else if (pilihanCategory == 3) {
+                inputTambahan = prompt('size berapa ?\n1.S\n2.M\n3.L\n4.XL')
+                newProduct = new Cloth(productBaru, hargaBaru, stockBaru, pilihanCategory - 1, size[inputTambahan - 1])
+            } else {
+                inputTambahan = prompt('sugar level berapa ?\n1.Low\n2.Normal\n3.High')
+                newProduct = new Fruits(productBaru, hargaBaru, stockBaru, pilihanCategory - 1, sugarLevel[inputTambahan - 1])
+            }
+            var yakin = confirm(`${productBaru}, harga Rp.${hargaBaru},00 , stock ${stockBaru},categori = ${categories[pilihanCategory - 1]}\nYakin ?`)
             if (yakin) {
-                fruits.push({ name: buahBaru, price: hargaBaru, stock: stockBaru })
-                tampilkanBuah()
+                products.push(newProduct)
+                tampilkanProd()
             } else {
                 alert('kembali ke menu utama')
             }
         } else if (menuUtama == 3) {
             var tampilanBuahDel = 'pilih yang mau dihapus:\n'
-            for (let i = 0; i < fruits.length; i++) {
-                tampilanBuahDel += `${i + 1}. ${fruits[i].name} : Rp.${fruits[i].price},00 , stock = ${fruits[i].stock}\n`
+            for (let i = 0; i < products.length; i++) {
+                tampilanBuahDel += `${i + 1}. ${products[i].name} : Rp.${products[i].price},00 , stock = ${products[i].stock}\n`
             }
             var nomorDelete = prompt(tampilanBuahDel)
-            var yakin = confirm(`apakah Yakin menghapus buah ${fruits[nomorDelete - 1].name} ?`)
+            var yakin = confirm(`apakah Yakin menghapus products ${products[nomorDelete - 1].name} ?`)
             if (yakin) {
-                fruits.splice(nomorDelete - 1, 1)
-                var tampilanBuah = 'Daftar buah:\n'
-                for (let i = 0; i < fruits.length; i++) {
-                    tampilanBuah += `${i + 1}. ${fruits[i].name} : Rp.${fruits[i].price},00 , stock = ${fruits[i].stock}\n`
-                }
-                alert(tampilanBuah)
+                products.splice(nomorDelete - 1, 1)
+                tampilkanProd()
             } else {
                 alert('kembali ke menu utama')
             }
         } else if (menuUtama == 4) {
             while (true) {
-                var tampilanBuahBuy = 'pilih yang mau dibeli:\n'
-                for (let i = 0; i < fruits.length; i++) {
-                    tampilanBuahBuy += `${i + 1}. ${fruits[i].name} : Rp.${fruits[i].price},00 , stock = ${fruits[i].stock}\n`
+                var tampilanProductsBuy = 'pilih yang mau dibeli:\n'
+                for (let i = 0; i < products.length; i++) {
+                    tampilanProductsBuy += `${i + 1}. ${products[i].name} : Rp.${products[i].price},00 , stock = ${products[i].stock}\n`
                 }
-                var nomorBuy = prompt(tampilanBuahBuy)
+                var nomorBuy = prompt(tampilanProductsBuy)
                 do {
-                    var qtyBuy = parseInt(prompt(`beli buah ${fruits[nomorBuy - 1].name} berapa ? stock =  ${fruits[nomorBuy - 1].stock} `))
-                    if (isNaN(qtyBuy) || qtyBuy > fruits[nomorBuy - 1].stock || qtyBuy < 0) {
+                    var qtyBuy = parseInt(prompt(`beli buah ${products[nomorBuy - 1].name} berapa ? stock =  ${products[nomorBuy - 1].stock} `))
+                    if (isNaN(qtyBuy) || qtyBuy > products[nomorBuy - 1].stock || qtyBuy < 0) {
                         alert('Qty yang diinput melebihi Stock yang ada atau tidak bisa diterima')
                     }
-                } while (isNaN(qtyBuy) || qtyBuy > fruits[nomorBuy - 1].stock || qtyBuy < 0);
+                } while (isNaN(qtyBuy) || qtyBuy > products[nomorBuy - 1].stock || qtyBuy < 0);
 
-                fruits[nomorBuy - 1].stock -= qtyBuy
+                products[nomorBuy - 1].stock -= qtyBuy
                 var indexcart = -1
                 for (let i = 0; i < cart.length; i++) {
-                    if (cart[i].name == fruits[nomorBuy - 1].name) {
+                    if (cart[i].name == products[nomorBuy - 1].name) {
                         indexcart = i
                         break
                     }
@@ -104,12 +189,13 @@
                 if (indexcart >= 0) {
                     cart[indexcart].qty += qtyBuy
                 } else {
-                    let addCart = new Object() // sama dengan {}
-                    addCart.name = fruits[nomorBuy - 1].name
-                    addCart.price = fruits[nomorBuy - 1].price
-                    addCart.qty = qtyBuy
+                    // let addCart = new Object() // sama dengan {}
+                    // addCart.name = products[nomorBuy - 1].name
+                    // addCart.price = products[nomorBuy - 1].price
+                    // addCart.qty = qtyBuy
+                    let addCart = new Cart(products[nomorBuy - 1].name, products[nomorBuy - 1].price, qtyBuy)
                     cart.push(addCart)
-                    // cart.push({ name: fruits[nomorBuy - 1].name, price: fruits[nomorBuy - 1].price, qty: qtyBuy })
+                    // cart.push({ name: products[nomorBuy - 1].name, price: products[nomorBuy - 1].price, qty: qtyBuy })
                 }
 
                 var tampilanCart = 'Daftar cart:\n'
