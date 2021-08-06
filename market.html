@@ -68,7 +68,7 @@
     ]
     const renderList = (obj) => {
         var output = ''
-        for (property in obj) { // untuk looping object
+        for (property in obj) { // untuk looping object bisa juga buat array
             if (property == 'category') {
                 output += `${property} : ${categories[obj[property]]} `
             } else {
