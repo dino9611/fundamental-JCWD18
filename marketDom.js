@@ -17,6 +17,8 @@ let products = [
     new Product(1579581080926, 'apel', 2000, 30, 4),
 ]
 
+let indexDelete = -1
+let indexEdit = -1
 
 const printData = (arr) => {
 
@@ -80,8 +82,7 @@ let printCategories = (indexCat) => {
 }
 
 
-let indexDelete = -1
-let indexEdit = -1
+
 
 // ? Edit Feature
 const onEditClick = (index) => {
