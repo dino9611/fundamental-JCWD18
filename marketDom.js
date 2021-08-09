@@ -24,29 +24,33 @@ const printData = (arr) => {
 
     let output = arr.map((val, index) => {
         if (index == indexDelete) {
-            return (`<tr>
-            <td>${val.id}</td>
-            <td>${categories[val.category]}</td>
-            <td>${val.name}</td>
-            <td>${val.price}</td>
-            <td>${val.stock}</td>
-            <td><button onclick="onYesDeleteClick(${val.id})">Yes</button></td>
-            <td><button onclick="onNoDelClick()">No</button></td>
-        </tr>`)
+            return (`
+            <tr>
+                <td>${val.id}</td>
+                <td>${categories[val.category]}</td>
+                <td>${val.name}</td>
+                <td>${val.price}</td>
+                <td>${val.stock}</td>
+                <td><button onclick="onYesDeleteClick(${val.id})">Yes</button></td>
+                <td><button onclick="onNoDelClick()">No</button></td>
+            </tr>`
+            )
         } else if (index == indexEdit) {
-            return (`<tr>
-            <td>${val.id}</td>
-            <td>
-            <select id="${"EditCategory" + index}">
-                ${printCategories(val.category)}
-            </select>
-            </td>
-            <td><input type="text" value="${val.name}" id="${"EditName" + index}"/></td>
-            <td><input type="number" value="${val.price}" id="${"Editprice" + index}"/></td>
-            <td><input type="number" value="${val.stock}" id="${"EditStock" + index}"/></td>
-            <td><button onclick="">Save</button></td>
-            <td><button onclick=" onCancelEditClick()">Cancel</button></td>
-        </tr>`)
+            return (`
+            <tr>
+                <td>${val.id}</td>
+                <td>
+                <select id="${"EditCategory"}">
+                    ${printCategories(val.category)}
+                </select>
+                </td>
+                <td><input type="text" value="${val.name}" id="${"EditName"}"/></td>
+                <td><input type="number" value="${val.price}" id="${"EditPrice"}"/></td>
+                <td><input type="number" value="${val.stock}" id="${"EditStock"}"/></td>
+                <td><button onclick="onSaveEditClick(${val.id})">Save</button></td>
+                <td><button onclick=" onCancelEditClick()">Cancel</button></td>
+            </tr>`
+            )
         }
         return (`<tr>
             <td>${val.id}</td>
@@ -94,6 +98,36 @@ const onCancelEditClick = () => {
     printData(products)
 }
 
+const onSaveEditClick = (id) => {
+    let indexUpdate = products.findIndex((val) => val.id == id) // untuk mendapatkan index products berdasarkan Id
+    var category = document.getElementById('EditCategory').value
+    var name = document.getElementById('EditName').value
+    var price = document.getElementById('EditPrice').value
+    var stock = document.getElementById('EditStock').value
+    var obj = {
+        category: category, // category :category 
+        name, // sama dengan name : name
+        price,
+        stock
+    }
+    if (name && price && category && stock) {
+        let newEditProduct = new Product(products[indexUpdate].id, name, price, stock, category)
+        products.splice(indexUpdate, 1, newEditProduct)
+        // ? another way
+        // products[indexUpdate].category = category
+        // products[indexUpdate].name = name
+        // products[indexUpdate].price = price
+        // products[indexUpdate].stock = stock
+        // ? spread operator way
+        // let newEditProduct = { ...products[indexUpdate], ...obj } // cara mengupdate object
+        // let newEditProduct = { ...products[indexUpdate], name: name, category, stock, price }
+        // products.splice(indexUpdate, 1, newEditProduct)
+        indexEdit = -1
+        printData(products)
+    } else {
+        alert('isi semua field edit')
+    }
+}
 
 
 // ? delete feature
@@ -114,9 +148,7 @@ const onYesDeleteClick = (id) => {
 }
 
 
-// var ravi = 'reece'
-// var hasil = putri()[ravi][1][0]['rodeo']().russel('timo').yhido // angga
-// var hasil = putri()[ravi][1][0]['rodeo']().russel().yhido // govar
+
 
 const onInputDataClick = () => {
 
