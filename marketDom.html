@@ -8,13 +8,14 @@
     <style>
         table,
         th,
-        td {
+        td,
+        tr {
             border: 1px solid black;
             border-collapse: collapse;
             padding: 7px;
         }
 
-        form {
+        div {
             width: 50%;
             margin: 0 auto;
         }
@@ -28,15 +29,16 @@
         <h1>Market 2.0</h1>
 
     </center>
-    <form>
+    <div>
         <fieldset>
             <legend>filter</legend>
-            Name : <input type="text" id="" oninput="">
+            Name : <input type="text" id="filterName" oninput="onfilterName()">
             <br><br>
-            Harga : <input type="number" id="" onkeyup=""> - <input type="number" id="" onkeyup="">
+            Harga : <input type="number" id="min" onkeyup="onFilterPrice()"> - <input type="number" id="max"
+                onkeyup="onFilterPrice()">
             <br><br>
             category:
-            <select id="" onchange="">
+            <select id="filterCategory" onchange="onFilterCategory()">
                 <option value="0">All</option>
                 <option value="1">Fast Food</option>
                 <option value="2">Electronic</option>
@@ -44,7 +46,7 @@
                 <option value="4">Fruits</option>
             </select>
             <br><br>
-            <button>
+            <button onclick="onResetClick()">
                 Reset
             </button>
         </fieldset>
@@ -54,10 +56,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="text" id="inputName">
+                            <input type="text" placeholder="product name" id="inputName">
                         </td>
                         <td>
-                            <input type="number" id="inputPrice">
+                            <input type="number" placeholder="price" id="inputPrice">
                         </td>
                         <td>
                             <select id="inputCategory">
@@ -69,13 +71,13 @@
                             </select>
                         </td>
                         <td>
-                            <input type="number" id="inputPrice">
+                            <input type="number" placeholder="stock" id="inputStock">
                         </td>
                     </tr>
                 </tbody>
             </table>
             <br>
-            <button>
+            <button onclick="onInputDataClick()">
                 input
             </button>
         </fieldset>
@@ -89,6 +91,7 @@
                         <th>Name</th>
                         <th>price</th>
                         <th>stock</th>
+                        <th colspan="2">action</th>
                     </tr>
                 </thead>
                 <tbody id="result">
@@ -104,8 +107,7 @@
                 </tbody>
             </table>
         </fieldset>
-
-    </form>
+    </div>
 </body>
 
 <script src="./marketDom.js"></script>
