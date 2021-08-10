@@ -7,6 +7,17 @@ class Product {
         this.category = _category
     }
 }
+class Cart {
+    constructor(_id, _name, _price, _category, _qty) {
+        this.id = _id
+        this.name = _name
+        this.price = _price
+        this.category = _category
+        this.qty = _qty
+    }
+}
+
+
 
 let categories = ['all', 'Fast food', 'electronic', 'cloth', 'fruits']
 
@@ -15,6 +26,12 @@ let products = [
     new Product(1579581080924, 'TV', 4300000, 5, 2),
     new Product(1579581080925, 'hoodie', 200000, 4, 3),
     new Product(1579581080926, 'apel', 2000, 30, 4),
+] // master data
+
+
+
+let carts = [
+
 ]
 
 let indexDelete = -1
@@ -23,6 +40,8 @@ let indexEdit = -1
 const printData = (arr) => {
 
     let output = arr.map((val, index) => {
+        //! jika mau disabled 
+        // var buyButton = val.stock <= 0 ? `<button onclick="onBuyClick(${val.id})" disabled >buy</button> ` : `<button onclick="onBuyClick(${val.id})"  >buy</button> `
         if (index == indexDelete) {
             return (`
             <tr>
@@ -31,6 +50,7 @@ const printData = (arr) => {
                 <td>${val.name}</td>
                 <td>${val.price}</td>
                 <td>${val.stock}</td>
+                <td><button>buy</button></td>
                 <td><button onclick="onYesDeleteClick(${val.id})">Yes</button></td>
                 <td><button onclick="onNoDelClick()">No</button></td>
             </tr>`
@@ -47,6 +67,7 @@ const printData = (arr) => {
                 <td><input type="text" value="${val.name}" id="${"EditName"}"/></td>
                 <td><input type="number" value="${val.price}" id="${"EditPrice"}"/></td>
                 <td><input type="number" value="${val.stock}" id="${"EditStock"}"/></td>
+                <td><button>buy</button></td>
                 <td><button onclick="onSaveEditClick(${val.id})">Save</button></td>
                 <td><button onclick=" onCancelEditClick()">Cancel</button></td>
             </tr>`
@@ -58,6 +79,7 @@ const printData = (arr) => {
             <td>${val.name}</td>
             <td>${val.price}</td>
             <td>${val.stock}</td>
+            <td><button onclick="onBuyClick(${val.id})">buy</button> </td>
             <td><button onclick="onDeleteClick(${index})">Delete</button></td>
             <td><button onclick = "onEditClick(${index})">Edit</button></td>
         </tr>`)
@@ -67,6 +89,26 @@ const printData = (arr) => {
 
 }
 
+
+
+const printCarts = () => {
+    let output = carts.map((val) => {
+        return (`
+        <tr>
+            <td>${val.id}</td>
+            <td>${categories[val.category]}</td>
+            <td>${val.name}</td>
+            <td>${val.qty}</td>
+            <td>${val.price}</td>
+            <td><button>Delete</button></td>
+        </tr>
+        `)
+    })
+    document.getElementsByTagName('tbody')[2].innerHTML = output.join('')
+}
+
+
+printCarts()
 printData(products)
 
 
@@ -213,10 +255,86 @@ const onFilterPrice = () => {
     }
 }
 
+const onFilter = () => {
+    const min = document.getElementById('min').value
+    const max = document.getElementById('max').value
+    const filterCategory = document.getElementById('filterCategory').value
+    const filterName = document.getElementById('filterName').value
+    const newFilterProd = products.filter((val) => {
+        let filtName
+        let filtMin
+        let filtMax
+        let filtCategory
+        if (filterName) {
+            filtName = val.name.toLowerCase().includes(filterName.toLowerCase())
+        } else {
+            filtName = true
+        }
+        // boleh pake if boleh pake if ternary
+        filtMin = min ? val.price >= min : true  // true membuat variablenya terus berfungsi agar jika input ksong, true tidak akan mempengaruhi value yang di filter 
+        filtMax = max ? val.price <= max : true
+        filtCategory = filterCategory == 0 ? true : filterCategory == val.category
+
+        return filtName && filtMin && filtMax && filtCategory
+    })
+
+    printData(newFilterProd)
+}
+
 const onResetClick = () => {
     document.getElementById('filterName').value = ''
     document.getElementById('filterCategory').value = '0'
     document.getElementById('min').value = ''
     document.getElementById('max').value = ''
     printData(products)
+}
+
+
+// cari index berdasarkan Id dengan findIndex  di array dataproduct
+// cari juga apakah ada id tersebut didalam cart
+// jika ada atau indexnya buakn min maka tambah qty saja 
+// jika tidak atau indexnya -1 maka push product baru ke cart
+// dengna menggunakan indexproduct kita bisa mengurangi stock
+// setelah index didapatkan push ke array carts
+// print cart ulang
+
+const onBuyClick = (id) => {
+    let indexProd = products.findIndex((val) => val.id === id)
+    if (indexProd >= 0) { // memastikan id prodcuts benar ada
+        let indexCart = carts.findIndex((val) => val.id == id)
+        if (products[indexProd].stock == 0) {
+            alert('stock kosong')
+            return // dengan return koding dibawahnya tidak akan dibaca sama saja seperti menggunakan if else
+        }
+        products[indexProd].stock -= 1
+        if (indexCart < 0) { // tidak ada product id yang sama di cart 
+            let { id, name, price, category } = products[indexProd] //destructuring obj
+            carts.push(new Cart(id, name, price, category, 1))
+            // console.log(carts)
+            // ? cara panjangnya tanpa destructuring
+            // carts.push(new Cart(products[indexProd].id, products[indexProd].name, products[indexProd].price, products[indexProd].category))
+        } else {
+            carts[indexCart].qty += 1
+        }
+
+        onResetClick()
+        printCarts()
+        printData(products)
+    }
+}
+
+const onPaymentClick = () => {
+    let output = carts.map((val) => {
+        return `${val.id} | ${categories[val.category]} |${val.name} | ${val.price}X${val.qty} = Rp.${val.price * val.qty},00 <br>`
+    })
+    document.getElementById('payment').innerHTML = output.join('')
+    let subTotal = 0
+    carts.forEach((val) => {
+        subTotal += val.price * val.qty
+    })
+    let ppn = subTotal * (10 / 100)
+    let Total = subTotal + ppn
+    document.getElementsByTagName('h3')[0].innerHTML = 'subtotal ' + subTotal
+    document.getElementsByTagName('h3')[1].innerHTML = 'ppn ' + ppn
+    document.getElementsByTagName('h3')[2].innerHTML = 'Total ' + Total
 }

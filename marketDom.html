@@ -32,13 +32,13 @@
     <div>
         <fieldset>
             <legend>filter</legend>
-            Name : <input type="text" id="filterName" oninput="onfilterName()">
+            Name : <input type="text" id="filterName" oninput="onFilter()">
             <br><br>
-            Harga : <input type="number" id="min" onkeyup="onFilterPrice()"> - <input type="number" id="max"
-                onkeyup="onFilterPrice()">
+            Harga : <input type="number" id="min" onkeyup="onFilter()"> - <input type="number" id="max"
+                onkeyup="onFilter()">
             <br><br>
             category:
-            <select id="filterCategory" onchange="onFilterCategory()">
+            <select id="filterCategory" onchange="onFilter()">
                 <option value="0">All</option>
                 <option value="1">Fast Food</option>
                 <option value="2">Electronic</option>
@@ -91,11 +91,11 @@
                         <th>Name</th>
                         <th>price</th>
                         <th>stock</th>
+                        <th>buy</th>
                         <th colspan="2">action</th>
                     </tr>
                 </thead>
                 <tbody id="result">
-
                     <!-- isi dengan javascript -->
                     <!-- <tr>
                         <td>21212</td>
@@ -106,6 +106,37 @@
                     </tr> -->
                 </tbody>
             </table>
+        </fieldset>
+        <fieldset>
+            <legend>Cart</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>category</th>
+                        <th>Name</th>
+                        <th>qty</th>
+                        <th>price</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- isi cart -->
+
+                </tbody>
+            </table>
+            <br><br>
+            <button onclick="onPaymentClick()">Payment</button>
+        </fieldset>
+        <fieldset>
+            <legend>Payment</legend>
+            <h2>Transaction Detail</h2>
+            <p id='payment'>
+
+            </p>
+            <h3></h3>
+            <h3></h3>
+            <h3></h3>
         </fieldset>
     </div>
 </body>
