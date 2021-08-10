@@ -83,15 +83,49 @@ const cekPlat = (plat) => {
 
 // clearTimeout(time)
 // 00: 01
+// 00: 02
+// 00: 03
+// 00: 04
 // 01: 00
 
-let angka = 1
-let time
-time = setInterval(() => {
-    console.log(angka)
-    angka++
-    if (angka > 40) {
-        clearInterval(time)
+let angka = 0
+let inputDetik = 10
+// 0 - 40
+let timer
+// hitung maju
+// timer = setInterval(() => {
+
+//     let menit = Math.floor(angka / 60)
+//     if (menit < 10) menit = '0' + menit
+//     let detik = angka % 60
+//     detik = detik < 10 ? "0" + detik : detik
+//     console.log(`${menit}:${detik}`)
+//     angka++
+//     if (angka > inputDetik) {
+//         clearInterval(timer)
+//     }
+// }, 1000);
+
+const converToTimer = (second) => {
+    let jam = Math.floor(second / (3600))
+    jam = jam < 10 ? "0" + jam : jam
+    let menit = Math.floor(second / (60))
+    if (menit < 10) menit = '0' + menit
+    let detik = second % 60
+    detik = detik < 10 ? "0" + detik : detik
+
+    return `${jam}:${menit}:${detik}`
+}
+
+// hitung mundur
+timer = setInterval(() => {
+
+    let converTime = converToTimer(inputDetik)
+    console.log(converTime)
+    if (inputDetik === 0) {
+        clearInterval(timer)
     }
+    inputDetik--
 }, 1000);
+
 

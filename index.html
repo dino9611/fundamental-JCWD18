@@ -4,39 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index DOM</title>
+    <title>Timer DOM</title>
 </head>
 
 <body>
-    <center>
-        <h1>Manipulate DOM</h1>
-        Name : &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" placeholder="Nama Produk" id="name">
-        <br><br>
-        Price : &nbsp;&nbsp;&nbsp;&nbsp; <input type="number" placeholder="ex: 4000" id="price">
-        <br><br>
-        condition : &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" name='kondisi' value="new"> New
-        <input type="radio" name='kondisi' value='second'> second
-        <br><br>
-        warehouse : &nbsp;&nbsp;&nbsp;&nbsp;
-        <select id="warehouse">
-            <option value="" hidden selected>Pilih gudang</option>
-            <option value="JKT">JKT</option>
-            <option value="BDG">BDG</option>
-            <option value="SBY">SBY</option>
-        </select>
-        <br><br>
-        courier :&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" name='courier' value='JNE'> JNE
-        <input type="checkbox" name='courier' value="JNT"> JNT
-        <input type="checkbox" name='courier' value="Ninja Express"> Ninja Express
-        <br> <br>
-        <button onclick="onProcessClick()">Click Here</button>
-        <p id='result'>
-            result
-        </p>
-    </center>
+    <h1 id='timer'>00:00:00</h1>
+    input Menit:
+    <input type="number" id="menit"> <br>
+    input Detik:
+    <input type="number" id='detik'><br>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="pause()" disabled>Pause</button>
 </body>
-<script src="./latihan.js"></script>
+<script>
+
+    let inputTime = 0
+
+    // 0 - 40
+    let timer
+
+    const converToTimer = (second) => {
+        let jam = Math.floor(second / (3600))
+        jam = jam < 10 ? "0" + jam : jam
+        let menit = Math.floor(second / (60))
+        if (menit < 10) menit = '0' + menit
+        let detik = second % 60
+        detik = detik < 10 ? "0" + detik : detik
+
+        return `${jam}:${menit}:${detik}`
+    }
+
+    // hitung mundur
+
+    // timer = setInterval(() => {
+
+    //     let converTime = converToTimer(inputDetik)
+    //     console.log(converTime)
+    //     if (inputDetik === 0) {
+    //         clearInterval(timer)
+    //     }
+    //     inputDetik--
+    // }, 1000);
+
+    const start = () => {
+        if (inputTime == 0) {
+            let inputMenit = parseInt(document.getElementById('menit').value)
+            let inputDetik = parseInt(document.getElementById('detik').value)
+
+            inputMenit = inputMenit * 60
+            inputDetik += inputMenit
+            inputTime = inputDetik
+        }
+
+        document.getElementsByTagName('button')[0].disabled = true
+        document.getElementsByTagName('button')[2].disabled = false
+        timer = setInterval(() => {
+            let converTime = converToTimer(inputTime)
+            document.getElementById('timer').innerHTML = converTime
+            if (inputTime === 0) {
+                clearInterval(timer)
+                inputTime = 0
+                document.getElementsByTagName('button')[0].disabled = false
+                document.getElementsByTagName('button')[2].disabled = true
+            }
+            inputTime--
+        }, 1000);
+    }
+
+
+    const stop = () => {
+        inputTime = 0
+        clearInterval(timer)
+        document.getElementById('timer').innerHTML = '00:00:00'
+        document.getElementsByTagName('button')[0].disabled = false
+        document.getElementsByTagName('button')[2].disabled = true
+
+    }
+
+    const pause = () => {
+        clearInterval(timer)
+        document.getElementsByTagName('button')[0].disabled = false
+        document.getElementsByTagName('button')[2].disabled = true
+    }
+
+</script>
 
 </html>
