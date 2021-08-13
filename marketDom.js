@@ -266,7 +266,7 @@ const onFilter = () => {
         let filtMax
         let filtCategory
         if (filterName) {
-            filtName = val.name.toLowerCase().includes(filterName.toLowerCase())
+            filtName = val.name.toLowerCase().includes(filterName.toLowerCase()) 
         } else {
             filtName = true
         }
@@ -275,7 +275,7 @@ const onFilter = () => {
         filtMax = max ? val.price <= max : true
         filtCategory = filterCategory == 0 ? true : filterCategory == val.category
 
-        return filtName && filtMin && filtMax && filtCategory
+        return filtName && filtMin && filtMax && filtCategory 
     })
 
     printData(newFilterProd)

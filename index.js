@@ -191,11 +191,12 @@ const cekPassword =(password)=>{
 }
 // nggak boleh pake regex
 // cuma pake looping
-console.log(cekPassword('1234 s')) // harus 6 character
-console.log(cekPassword('abcdef')) // harus ada angkanya
-console.log(cekPassword('123456')) // harus ada hurufnya
-console.log(cekPassword('pa55word')) // bisa lewat
-console.log(cekPassword('p@55word')) // bisa lewat
+// console.log(cekPassword('1234 s')) // harus 6 character
+// console.log(cekPassword('abcdef')) // harus ada angkanya
+// console.log(cekPassword('123456')) // harus ada hurufnya
+// console.log(cekPassword('pa55word')) // bisa lewat
+// console.log(cekPassword('p@55word')) // bisa lewat
 
 
 
+console.log(fungsiku('kata')) // K Aa Ttt Aaaa
