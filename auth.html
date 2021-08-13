@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>auth</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    class User{
+        constructor(_username,__password,_role){
+            this.username = _username
+            this.password= __password
+            this.role=_role
+        }
+    }
+
+    let dataUsers = [
+        new User('dino','pass','user'),
+        new User('admin','pass',"admin")
+    ]
+
+
+    do {
+        let menuUtama = prompt(`1.login\n2.Register\n3.exit`)
+        if(menuUtama === '1'){
+            // cek dulu ada atau nggak usernya 
+            // kalo ada boleh masuk
+            // sebaliknya tidak bisa masuk
+            let username = prompt('username')
+            let password = prompt('password')
+            let dataUser = dataUsers.filter((val)=> val.username === username && val.password ==password)
+            if(dataUser.length){
+                do {
+                    let menuSubUtama = prompt(`1.menu Admin\n2.menu User\n3.LogOut`)
+                    if(menuSubUtama == 1){
+                        if(dataUser[0].role != 'admin'){
+                            alert('anda bukan admin')
+                        }else{
+                            alert('welcomp admin')
+                        }
+                    }else if(menuSubUtama == 2){
+                        if(dataUser[0].role != 'user'){
+                            alert('anda bukan user')
+                        }else{
+                            alert('welcomp user')
+                        }
+                    }else if(menuSubUtama == 3){
+                        break
+                    }
+    
+                } while (true);
+            }else{
+                alert('pass/username wrong') 
+            }
+        }else if(menuUtama === '2'){
+            // cek dulu ada atau nggak usernya 
+            // kalo ada nggak bisa register
+            // sebaliknya berhasil register
+            let username = prompt('username')
+            let password = prompt('password')
+            let dataUser = dataUsers.filter((val)=> val.username === username)
+            if(dataUser.length){
+                alert('username telah terdaftar')
+            }else{
+                let user = new User(username,password,'user')
+                dataUsers.push(user)
+                alert('berhasil daftar')
+            }
+        }else if(menuUtama == 3){
+            break
+        }
+        
+    } while (true);
+
+
+</script>
+</html>
